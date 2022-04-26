@@ -24,21 +24,23 @@ public class MainFrame extends JFrame {
 
   public MainFrame() {
 
+    // create components
     this.mainPanel = new JPanel();
-
     this.aboutLabel = new JLabel("Balogh Csenge, 2022.04.26, Szoft_I_N");
     this.questionLabel = new JLabel("Melyik Java GUI könyvtár?");
-
-
 
     for (int i=0; i<4;i++) {
       this.options[i] = new JRadioButton(answers[i]);
     }
 
     this.bGroup = new ButtonGroup();
-
     this.checkButton = new JButton("Vizsgál");
 
+    // add components
+    this.add(mainPanel);
+    this.mainPanel.setLayout(
+      new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS)
+    );
     this.mainPanel.add(aboutLabel);
     this.mainPanel.add(questionLabel);
     for (int i=0; i<4;i++) {
@@ -47,17 +49,21 @@ public class MainFrame extends JFrame {
     }
     this.mainPanel.add(checkButton);
 
+    this.checkButton.addActionListener(a -> verifyAnswer());
 
+    // frame settins
     this.setTitle("App");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(400, 300);
     this.setVisible(true);
 
+  }
 
-    this.add(mainPanel);
-    this.mainPanel.setLayout(
-      new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS)
-    );
-    
+  private void verifyAnswer() {
+    if (this.options[1].isSelected()) {
+      this.setTitle("Helyes válasz");
+    } else {
+      this.setTitle("Rossz válasz");
+    }
   }
 }
