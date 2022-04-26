@@ -1,4 +1,5 @@
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +12,7 @@ public class MainFrame extends JFrame {
   JLabel questionLabel;
 
   JRadioButton[] options = new JRadioButton[4];
+  ButtonGroup bGroup;
   JButton checkButton;
 
   public MainFrame() {
@@ -24,17 +26,15 @@ public class MainFrame extends JFrame {
       this.options[i] = new JRadioButton();
     }
 
+    this.bGroup = new ButtonGroup();
+
     this.checkButton = new JButton("Vizsgál");
-
-    //add components
-
-
-    // add the rest to the JPanel
 
     this.mainPanel.add(aboutLabel);
     this.mainPanel.add(questionLabel);
     for (int i=0; i<4;i++) {
       this.mainPanel.add(options[i]);
+      this.bGroup.add(options[i]);
     }
     this.mainPanel.add(checkButton);
 
